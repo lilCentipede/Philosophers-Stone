@@ -1,0 +1,10 @@
+#pragma once
+#include "Air.h"
+#include "Earth.h"
+#include "Fire.h"
+#include "Water.h"
+#include "Metal.h"
+#include "Spirit.h"
+#include "Stone.h"
+#include "Energy.h"
+#include "Gold.h"
