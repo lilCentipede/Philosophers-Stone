@@ -35,6 +35,8 @@ Equation::Equation(const Equation& other) {
 
 Equation& Equation::operator=(const Equation& other) {
 	if (this != &other) {
+		del();
+		equation.clear();
 		for (Element* el : other.equation) {
 			equation.push_back(el->copy());
 		}
@@ -42,10 +44,13 @@ Equation& Equation::operator=(const Equation& other) {
 	}
 	return *this;
 }
-Equation::~Equation() {
+void Equation::del() {
 	for (Element* e : equation) {
 		delete e;
 	}
+}
+Equation::~Equation() {
+	del();
 }
 Equation& Equation::operator+(Element* el) {
 	sign = '+';
@@ -61,7 +66,7 @@ bool Equation::itsElement() const {
 bool Equation::itsEquation() const{
 	return (sign == '+');
 }
-bool Equation::validReaction() {
+bool Equation::validReaction()const {
 	bool reaction = true;
 	for (unsigned int i = 0; i < equation.size(); i++)
 		for (unsigned int j = i+1; j < equation.size(); j++)

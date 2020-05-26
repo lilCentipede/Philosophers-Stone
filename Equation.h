@@ -16,10 +16,11 @@ public:
 	Equation(const Equation& other);
 	Equation& operator=(const Equation& other);
 	~Equation();
+	void del();
 	std::vector<Element*> getEquation();
 	bool itsElement()const;
 	bool itsEquation()const;
-	bool validReaction();
+	bool validReaction()const ;
 	Equation& operator+(Element*);
 	friend std::ostream& operator<<(std::ostream& out,const Equation& e);
 };

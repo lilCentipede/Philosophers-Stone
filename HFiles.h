@@ -8,3 +8,4 @@
 #include "Stone.h"
 #include "Energy.h"
 #include "Gold.h"
+#include "PhilosophersStone.h"

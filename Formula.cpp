@@ -1,4 +1,5 @@
 #include "Formula.h"
+#include "HFiles.h"
 Formula::Formula() {
 	sign = '!';
 	element = nullptr;
@@ -35,9 +36,42 @@ bool Formula::itsDivision()const {
 bool Formula::itsEquation() const{
 	return (sign == '=');
 }
+bool Formula::correctFormula()const{
+	return equation.validReaction();
+}
+void Formula::convertDivisionToEquation() {
+	if (element->getName() == "Fire" ||
+		element->getName() == "Water" ||
+		element->getName() == "Earth" ||
+		element->getName() == "Air" ||
+		element->getName() == "PhilosophersStone") {
+		equation + element->copy();
+		equation + element->copy();
+	}
+	if (element->getName() == "Metal") {
+		equation + (new Earth);
+		equation + (new Fire);
+	}
+	if (element->getName() == "Stone") {
+		equation + (new Fire);
+		equation + (new Water);
+	}
+	if (element->getName() == "Energy") {
+		equation + (new Water);
+		equation + (new Air);
+	}
+	if (element->getName() == "Spirit") {
+		equation + (new Air);
+		equation + (new Air);
+	}
+	if (element->getName() == "Gold") {
+		equation + (new Metal);
+		equation + (new Metal);
+	}
+}
 std::ostream& operator<<(std::ostream& out,const Formula& f) {
 	if (f.itsDivision()) {
-		out << '/' << f.equation;
+		out << '/' << f.element->getName();
 	}
 	else if (f.itsEquation()) {
 		out << f.equation << " = " << f.element->getName();
